@@ -37,14 +37,27 @@ exports.getPictures = function (req, res, callback) {
                     path.extname(files[i]).toLowerCase()
                 )) {
                     imgs.push(files[i]);
-                }else{//若不是，则删除
-                    fs.unlink(__dirname + "/../uploads/" + dir +'/'+files[i]);
+                } else {//若不是，则删除
+                    fs.unlink(__dirname + "/../uploads/" + dir + '/' + files[i]);
                 }
                 iterator(i + 1);
-            })(0,function(){
+            })(0, function () {
                 return;
             })
             return;
         }
     })
+}
+
+//新建文件夹
+exports.buildAlbum = function (req, res, callback) {
+    fs.mkdir(__dirname + "/../uploads/" + req.query.dirname, function (err) {
+        if (err) {
+            console.log(1)
+            res.render("error.ejs");
+            return;
+        } else {
+            callback();
+        }
+    });
 }

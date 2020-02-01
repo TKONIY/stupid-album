@@ -21,7 +21,7 @@ exports.showAlbum = function (req, res) {
 }
 
 //展示一个相册+上传文件
-var upAlbum =  function (req, res) {
+exports.upAlbum =  function (req, res) {
     file.getPictures(req, res, function (files) {
         res.render("uploads.ejs", {
             images: files,
@@ -29,7 +29,6 @@ var upAlbum =  function (req, res) {
         })
     })
 }
-exports.upAlbum = upAlbum;
 
 
 //上传文件，post请求
@@ -43,7 +42,19 @@ exports.upPicture = function(req, res){
             throw err;
         }else{
             //未实现文件改名，应当在file里面写一个函数
-            upAlbum(req, res)
+            this.upAlbum(req, res)
         }
     })
+}
+
+//新建文件夹， get请求提交表单
+exports.newDir = function(req, res){
+    if(JSON.stringify(req.query)=='{}'){
+        res.render("newdir.ejs");
+        return;
+    }else{
+        file.buildAlbum(req, res, function(){
+            res.send("success"+req.query.dirname);
+        })
+    }
 }
