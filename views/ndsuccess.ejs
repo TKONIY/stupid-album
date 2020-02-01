@@ -26,24 +26,14 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">全部相册 <span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">全部相册 <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/newdir">新建相册</a>
                 </li>
                 <li class="nav-item">
-                    <div class="dropdown">
-                        <button class="btn btn-light my-2 my-sm-0 dropdown-toggle" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                            上传
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <% for( var i = 0; i < albums.length; i++ ) { %>
-                            <a class="dropdown-item" href="<%= "/uploads/"+albums[i] %> "><%= albums[i] %> </a>
-                            <% } %>
-                        </div>
-                    </div>
+                    <a class="nav-link activate" href="/#">✔</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
@@ -53,22 +43,21 @@
         </div>
     </nav>
 
+    
     <div class="container">
-        <div class="row">
-            <% for (var i=0;i<albums.length;i++) {%>
-            <div class="card shadow" style="width: 10rem;margin:0.5rem;">
-                <div class="card-body">
-                    <h5 class="card-title"><%= albums[i] %></h5>
-                    <h6 class="card-subtitle mb-2 text-muted">相册</h6>
-                    <p class="card-text">未完善功能，这个后端程序员小哥懒得将照片绑定到相册封面了，这不是该做的事情，他承受的太多了。</p>
-                    <a href="<%= "/" + albums[i] %> " class="btn btn-outline-dark btn-sm">
-                        <b><%= albums[i] %></b>
-                    </a>
-                </div>
+        <div class="alert alert-success shadow"  style="margin:0.5rem" role="alert">
+            你已成功创建相册<%= dirname %> 
+          </div>
+        <div class="card shadow" style="margin:0.5rem">
+            <div class="card-body">
+                <h5 class="card-title"><%= dirname %></h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= authorid %></h6>
+                <p class="card-text"><%= discription %> </p>
+                <a href="<%= "/" + dirname %> " class="btn btn-outline-dark btn-sm">
+                    <b><%= dirname %></b>
+                </a>
             </div>
-            <% } %>
         </div>
-
     </div>
 
 

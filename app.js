@@ -7,6 +7,7 @@ var app = express();
 //静态文件托管，public文件夹
 app.use(express.static("./public"))
 app.use(express.static("./uploads"))
+
 //显示首页
 app.get("/", router.showIndex);
 //弹出上传表单
@@ -15,7 +16,9 @@ app.get("/uploads/:albumName", router.upAlbum);
 app.post("/uploads/:albumName", router.upPicture);
 // 新建文件夹,转到表单，使用get提交，接收提交后的反应
 app.get("/newdir", router.newDir);
-//其他情况下404,可以next()到这里来，但我采取了直接render的方法xin
+// 展示相册
 app.get("/:albumName", router.showAlbum);
-// app.use(router.show404);
+//其他情况下404,可以next()到这里来，但我采取了直接render的方法xin
+
+app.use(router.show404);
 app.listen(3030)
