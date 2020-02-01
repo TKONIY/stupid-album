@@ -1,0 +1,21 @@
+{
+  "name": "album",
+  "version": "1.0.0",
+  "description": "a little album",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "static"
+  ],
+  "author": "tkoniy",
+  "license": "MIT",
+  "dependencies": {
+    "date-and-time": "^0.12.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "formidable": "^1.2.1"
+  }
+}
