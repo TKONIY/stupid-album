@@ -41,7 +41,9 @@ exports.getPictures = function (req, res, callback) {
                     fs.unlink(__dirname + "/../uploads/" + dir +'/'+files[i]);
                 }
                 iterator(i + 1);
-            })(0)
+            })(0,function(){
+                return;
+            })
             return;
         }
     })
