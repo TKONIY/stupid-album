@@ -1,8 +1,9 @@
 //所有和文件有关的操作
 var fs = require("fs");
+var path = require("path");
 
 //列出所有的相册
-exports.getAllAlbums = function (callback) {
+exports.getAllAlbums = function (req, res, callback) {
     fs.readdir(__dirname + "/../uploads", function (err, files) {
         if (err) {
             res.render("error.ejs");
@@ -23,7 +24,24 @@ exports.getPictures = function (req, res, callback) {
             res.render("error.ejs");
             return;
         } else {
-            callback(files);
+            //删除不是图片格式的文件
+            var imgs = [];
+            var imgExt = [".jpeg", ".jpg", ".png", ".gif"];//支持的图片格式，可补充
+            (function iterator(i) {
+                if (i == files.length) {
+                    callback(imgs);
+                    return;
+                }
+                //判断后缀是否为图片
+                if (imgExt.includes(
+                    path.extname(files[i]).toLowerCase()
+                )) {
+                    imgs.push(files[i]);
+                }else{//若不是，则删除
+                    fs.unlink(__dirname + "/../uploads/" + dir +'/'+files[i]);
+                }
+                iterator(i + 1);
+            })(0)
             return;
         }
     })
